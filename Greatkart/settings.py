@@ -77,6 +77,11 @@ WSGI_APPLICATION = 'Greatkart.wsgi.application'
 
 AUTH_USER_MODEL='accounts.Account'
 
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.EmailBackend', 
+    'django.contrib.auth.backends.ModelBackend',  
+]
+
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -132,7 +137,21 @@ STATICFILES_DIRS=[
 MEDIA_URL='media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
 
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS={
+    messages.ERROR: 'danger',
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#SMTP Configuration
+
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT= 587
+EMAIL_HOST_USER= 'souvik.das.shivam@gmail.com'
+EMAIL_HOST_PASSWORD= 'seyq fcyb cxzp dtzb'
+EMAIL_USE_TLS= True
