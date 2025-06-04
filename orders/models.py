@@ -57,7 +57,7 @@ class OrderProduct(models.Model):
     Payment= models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     user=models.ForeignKey(Account, on_delete=models.CASCADE)
     product=models.ForeignKey(Product, on_delete=models.CASCADE)
-    variation=models.ForeignKey(Variation, on_delete=models.CASCADE)
+    variations=models.ManyToManyField(Variation, blank=True)
     color=models.CharField(max_length=20)
     size=models.CharField(max_length=20)
     quantity=models.IntegerField()
