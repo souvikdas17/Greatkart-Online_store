@@ -37,7 +37,16 @@ A full-featured e-commerce website that allows users to browse products, add ite
 
 1. **Clone the repository**:
 
-```bash
+```bash`
 git clone https://github.com/your-username/ecommerce-website.git
-cd ecommerce-website
+cd ecommerce-website```
+
+2. Install backend dependencies:
+
+Run the command "pip install -r requirements.txt".
+
+3. Setup environment variables:
+
+Run the command "python manage.py runserver".
+
 
