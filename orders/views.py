@@ -97,12 +97,15 @@ def payments(request):
         orderproduct.variations.set(product_variations)
         orderproduct.save()
         
-    product=Product.objects.get(id=item.product_id)
-    product.stock-=item.quantity
-    product.save()
+        #Reduce the quantity of the sold product.
+        product=Product.objects.get(id=item.product_id)
+        product.stock-=item.quantity
+        product.save()
     
+    #Clear cart
     CartItem.objects.filter(user=request.user).delete
-    
+
+    #Send order recieved mail to Customer.    
     mail_subject="Thank You for choosing us! You can review your order in the orders section and check for delivery updates."
     message=render_to_string('order/order_received_email.html', {
         'user':request.user,
@@ -112,6 +115,7 @@ def payments(request):
     send_email=EmailMessage(mail_subject, message, to=[to_email])
     send_email.send()
     
+    #Send order Number and Transaction ID to sendData method using JsonResponse.
     data={
         'order_number': order.order_number , 
         'transID':payment.payment_id ,
